@@ -1,4 +1,10 @@
 
+const backendEndpoint = import.meta.env.VITE_NODE_ENV !=="production"?
+import.meta.env.VITE_BACKEND_API_DEVELOPMENT:import.meta.env.VITE_BACKEND_API_PRODUCTION;
+console.log(backendEndpoint);
+
+
+
 class ProblemClientApi {
     #ApiEndpoint = ""
     constructor(url) {
@@ -147,8 +153,8 @@ class AuthenticationClientApi {
     }
 }
 
-export const ExecutionEndpoint = new ExecutionClientApi("http://localhost:8000/execute-code");
+export const ExecutionEndpoint = new ExecutionClientApi(`${backendEndpoint}/execute-code`);
 
-export const ProblemEndpoint = new ProblemClientApi("http://localhost:8000/problem");
+export const ProblemEndpoint = new ProblemClientApi(`${backendEndpoint}/problem`);
 
-export const AuthenticationEndpoint = new AuthenticationClientApi("http://localhost:8000/user");
+export const AuthenticationEndpoint = new AuthenticationClientApi(`${backendEndpoint}/user`);

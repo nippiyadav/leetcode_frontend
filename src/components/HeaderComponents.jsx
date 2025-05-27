@@ -3,6 +3,7 @@ import {NavLink } from 'react-router-dom'
 import ProfileSection from './ProfileSection'
 
 function HeaderComponents() {
+  console.log(import.meta.env.VITE_NODE_ENV);
 
 
   return (

@@ -1,0 +1,114 @@
+@import "tailwindcss";
+
+:root {
+  --box_shadowing: 1px 1px 10px 1px #4a4a4acf;
+  --common-padding: 10px;
+  --border-radius: 10px;
+  --color-tab-divider:#ffffff24;
+  font-size: 18px;
+}
+
+.executionPageStyling {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 50% 50%;
+  height: 94vh;
+  justify-content: center;
+  padding: 12px;
+  gap: 7px;
+}
+
+.QuestionComponents,
+.ResultComponents {
+  box-shadow: var(--box_shadowing);
+  border-radius: var(--border-radius);
+}
+
+.codeEditorStyling {
+  padding: var(--common-padding);
+  border-radius: var(--border-radius);
+  background-color: #1e1d1d;
+  grid-column: 2 / 2;
+  grid-row: 1 / 2;
+}
+
+.ResultComponents {
+  grid-row: 2 / -1;
+}
+
+.QuestionComponents {
+  grid-row: 1 / -1;
+}
+
+.Q_menu {
+  background-color: #2e2d2d;
+  color: whitesmoke;
+  display: flex;
+  padding: 6px;
+  gap: 15px;
+  flex-wrap: wrap;
+  align-items: center;
+  border-radius: 10px 10px 0px 0px;
+  cursor: pointer;
+  padding: var(--common-padding);
+}
+
+.Q_menu_tag:not(:last-child)::before{
+  background: var(--color-tab-divider);
+  content: "";
+  display: block;
+  height: 12px;
+  right: -5px;
+  position: absolute;
+  top: 54%;
+  transform: translateY(-50%);
+  width: 1px;
+}
+li{
+  list-style: inside;
+}
+
+h1{
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.commanFlex{
+  display: flex;
+  gap: 15px;
+}
+
+.commonSpacing,li{
+  line-height: 1.5;
+  letter-spacing: 1.2px;
+   word-spacing: 2.5px;
+}
+
+input{
+  background-color: gray;
+  width: 100%;
+  padding: 8px;
+  border-radius: 7px;
+}
+
+
+.CommonBtnStyle{
+  padding: 4px 12px;
+  border-radius: 6px;
+  margin-right: 4px;
+  background-color: #51515197;
+  color: white;
+  cursor: pointer;
+}
+
+.CommonBtnStyle:hover{
+  background-color: #42424297;
+
+}
+
+select option{
+  background-color: #969494;
+  color: white;
+}
+
+

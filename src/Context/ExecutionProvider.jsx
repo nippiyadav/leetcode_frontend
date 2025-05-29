@@ -11,12 +11,14 @@ function ExecutionProvider({children}) {
       tags:[],
       example:[],
       constraints:[ ],
+      company: [],
+      demo: false,
       hints:[ ],
       language:"",
       templateCode:{},
-      tastCases:[],
+      testCases:[],
       codeSnippets:{},
-      refrenceSolution: { }
+      referenceSolution: { }
     });
     const [testResponse,setTestResponse]  = useState([]);
 

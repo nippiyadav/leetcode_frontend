@@ -21,10 +21,13 @@ export async function GrokApi(data) {
       const chatCompletion = await client.chat.completions.create({
     messages: [
       {role:"system",content:`${systemPrompt}`},
-      { role: 'user', content: data.AiGenerate }
+      { role: 'user', content: `json ${CommonQuestionaryMenu}data.AiGenerate` }
     ],
-    model: 'qwen-qwq-32b',
-    response_format:{"type": "json_object"},
+    model: "meta-llama/llama-4-maverick-17b-128e-instruct",
+    
+    response_format:{
+      type: "json_object"
+    },
   });
 
   console.log(chatCompletion.choices[0].message.content);

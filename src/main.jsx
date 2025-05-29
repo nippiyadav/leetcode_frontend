@@ -54,8 +54,10 @@ createRoot(document.getElementById('root')).render(
     <AuthProvider>
       <ExecutionProvider>
         <CreateProblemContextProvider>
+          <div className='max-w-[1920px] mx-auto'>
           <RouterProvider router={router}>
           </RouterProvider>
+          </div>
         </CreateProblemContextProvider>
       </ExecutionProvider>
     </AuthProvider>

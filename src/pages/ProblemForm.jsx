@@ -110,7 +110,7 @@ function ProblemForm() {
                 
             
             
-                <Textarea name={'description'} value={storeExecution.title} onChange={(e)=>{
+                <Textarea name={'description'} value={storeExecution.description} onChange={(e)=>{
                     setStoreExecution((prev)=>{
                         return {...prev,description:e.target.value}
                     })
@@ -118,9 +118,24 @@ function ProblemForm() {
                 
 
             
+                <label htmlFor="demo" className='font-semibold'>Demo</label>
+                <div className='p-2 bg-[#d9d9d9]'>
+                <select value={storeExecution.demo} onChange={(e)=>{
+                    setStoreExecution((prev)=>{
+                        return {...prev,demo:Boolean(e.target.value)}
+                    })
+                }}  
+                className='block  w-full' name="demo" id="demo">
+                    <option value={false}>false</option>
+                    <option value={true}>true</option>
+                </select>
+                </div>
+
+
+
                 <label htmlFor="deficulty" className='font-semibold'>DEFFICULTY</label>
                 <div className='p-2 bg-[#d9d9d9]'>
-                <select value={storeExecution.difficulty} defaultValue={"EASY"} onChange={(e)=>{
+                <select value={storeExecution.difficulty} onChange={(e)=>{
                     setStoreExecution((prev)=>{
                         return {...prev,difficulty:e.target.value}
                     })

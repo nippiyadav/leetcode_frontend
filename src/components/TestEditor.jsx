@@ -12,6 +12,9 @@ function TestEditor() {
     const [refreshSolutionLanguage,setrefreshSolutionLanguage] = useState("#");
     const [templateLanguage,setTemplateLanguage] = useState("#");
 
+    console.log(storeExecution);
+    
+
      const [code,setCode] = useState(`/**
      * @param {number[]} nums
      * @param {number} target
@@ -33,7 +36,7 @@ function TestEditor() {
       }else if (whichActive==="refreshSolutionLanguageCode") {
  
         setStoreExecution((prev)=>{
-          return {...prev,language:refreshSolutionLanguage,refrenceSolution:{...prev.refrenceSolution,[refreshSolutionLanguage]:code}}
+          return {...prev,language:refreshSolutionLanguage,referenceSolution:{...prev.referenceSolution,[refreshSolutionLanguage]:code}}
         })
       } else if (whichActive === "templateCode") {
         setStoreExecution((prev)=> {
@@ -54,8 +57,12 @@ function TestEditor() {
       
     // this useEffect will run when change in the refreshSolution
       useEffect(()=>{
+        
+        console.log(refreshSolutionLanguage);
+        
         if (whichActive === "refreshSolutionLanguageCode") {          
-            setCode((prev)=> storeExecution.refrenceSolution[refreshSolutionLanguage]??"Nothing");
+          console.log(storeExecution?.referenceSolution[refreshSolutionLanguage]);
+            setCode((prev)=> storeExecution.referenceSolution[refreshSolutionLanguage]??"Nothing");
             setStoreExecution((prev)=>  {
             return {...prev,language:codeSnippetlanguage}
           })

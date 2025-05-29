@@ -13,6 +13,7 @@ function ProfileInfo({classname}) {
       {user && <>
         <span>{user?.username}</span>
         <span>{user?.fullname}</span>
+        <Link to={`/dashboard/${user?.username}`}>Dashboard</Link>
       </>}
 
         {user? 

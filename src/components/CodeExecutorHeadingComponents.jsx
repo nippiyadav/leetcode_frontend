@@ -26,16 +26,16 @@ function CodeExecutorHeadingComponents({className}) {
       if (pathname.startsWith(`/execution/${id}`)) {
           console.log("storeExecution:- ",storeExecution);
           
-        const newTestCases = ModefiedTesxtCase(storeExecution.tastCases)
-        const newModifiedVersion = {...storeExecution,tastCases:newTestCases}
+        const newTestCases = ModefiedTesxtCase(storeExecution.testCases)
+        const newModifiedVersion = {...storeExecution,testCases:newTestCases}
         console.log("newModifiedVersion:- ",newModifiedVersion);
 
         let onlyData = {
           codeSnippets:newModifiedVersion.codeSnippets[newModifiedVersion.language],
           source_code:newModifiedVersion.templateCode[newModifiedVersion.language], 
           language:newModifiedVersion.language, 
-          stdin:newModifiedVersion.tastCases.map((v,i)=> v.input), 
-          expected_outputs:newModifiedVersion.tastCases.map((v,i)=> v.output), 
+          stdin:newModifiedVersion.testCases.map((v,i)=> v.input), 
+          expected_outputs:newModifiedVersion.testCases.map((v,i)=> v.output), 
           problemId:newModifiedVersion.id,
           language_id:""
         }
@@ -52,16 +52,16 @@ function CodeExecutorHeadingComponents({className}) {
           console.log("No Data present here");
           return
         }
-        const newTestCases = ModefiedTesxtCase(storeExecution.tastCases);
-        console.log("Running and testing code:- ",storeExecution.tastCases);
+        const newTestCases = ModefiedTesxtCase(storeExecution.testCases);
+        console.log("Running and testing code:- ",storeExecution.testCases);
   
-        const newModifiedVersion = {...storeExecution,tastCases:newTestCases}
+        const newModifiedVersion = {...storeExecution,testCases:newTestCases}
         
         console.log("storeExecution:- ",newModifiedVersion);
     
         const response = await ProblemEndpoint.Post("testing-problem",newModifiedVersion);
         console.log(response);
-        setTestResponse(response.message??[])
+        setTestResponse(response.data??[])
 
       }
         } catch (error) {

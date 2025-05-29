@@ -9,8 +9,8 @@ function CodeEditor() {
   const [code,setCode] = useState("");
 
   useEffect(()=>{
-    console.log(Object.keys(storeExecution.refrenceSolution));
-    const arrLanguage = Object.keys(storeExecution.refrenceSolution)
+    console.log(Object.keys(storeExecution.referenceSolution));
+    const arrLanguage = Object.keys(storeExecution.referenceSolution)
     setAllLanguage(arrLanguage);
     setStoreExecution((prev)=>{
       console.log("running on loading",prev);

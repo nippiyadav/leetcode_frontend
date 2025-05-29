@@ -5,7 +5,7 @@ const AuthContext = createContext(null)
 
 
 function AuthProvider({children}) {
-    const [user,setUser] = useState({})
+    const [user,setUser] = useState(null)
 
     const logout = async ()=>{
         try {

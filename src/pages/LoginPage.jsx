@@ -24,10 +24,22 @@ function LoginPage() {
         setLoading(true)
         try {
             if (pathname === "/signup") {
-                if(getValues("password") !== getValues("repassword")){
-                    return setError("repassword",{message:"Password is not same"})
+                try {
+                    if(getValues("password") !== getValues("repassword")){
+                        return setError("repassword",{message:"Password is not same"})
+                    }
+                    console.log("Yes working",data);
+                    const response = await  AuthenticationEndpoint.Post("register",data);
+                    if (response.success) {
+                        setUser(response.data)
+                        navigation("/login")
+                    }else{
+                        navigation("/signups")
+                    }
+                } catch (error) {
+                    console.log("Error in the signUp ", error);
+                    
                 }
-                console.log("Yes working",data);
             } else if (pathname === "/login") {
                try {
                 const response = await  AuthenticationEndpoint.Post("login",data);
@@ -159,15 +171,7 @@ function LoginPage() {
         {pathname==="/login"&&<span>Do not have an account? <Link className='text-blue-800 commonSpacing hover:underline' to={"/signup"}>Sign Up</Link> </span>}
         {pathname==="/signup"&&<span>Have an account? <Link className='text-blue-800 commonSpacing hover:underline' to={"/login"}>Log In</Link> </span>}
         
-        <div className='commanFlex mb-2'>
-            <span className='cursor-pointer'>
-            <svg viewBox="0 0 24 24" width="24" height="24">
-                <path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm.044-5.213c2.445 0 4.267-1.551 4.556-3.781v-1.891h-4.519v1.89h2.602a2.893 2.893 0 0 1-2.724 1.93c-1.194 0-2.677-1.1-2.677-2.843 0-1.621 1.161-2.876 2.677-2.876.739 0 1.413.279 1.922.736l1.399-1.376a4.744 4.744 0 1 0-3.236 8.212z"></path></svg>
-            </span>
-            <span className='cursor-pointer'>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
-            </span>
-        </div>
+       
         </div>
 
     </div>

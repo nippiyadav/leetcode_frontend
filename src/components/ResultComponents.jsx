@@ -20,9 +20,9 @@ function ResultComponents() {
           <span onClick={()=> setResultShow(true)} className='Q_menu_tag relative'>Result</span>           
       </div>
 
-      <div className=' px-2 py-3 flex-1 overflow-auto'>
+      <div className='flex-1'>
         {resultShow? 
-        <div className='commanFlex flex-wrap'>
+        <div className='commanFlex flex-wrap p-3 overflow-y-auto h-[250px]'>
           {testResponse.map((v,i)=>(
             <TestResultComponents key={i} testCaseResult={v} textCase={i}/>
           ))}

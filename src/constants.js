@@ -29,7 +29,9 @@ because i am running this code in the judge0 code execution platform
 please add the company in the field of company which are array you can add 3 different company,
 when i will say change demo to true then you change in your response a field of demo value false to true otherwise keep it false
 
+!important please give properly the indentation for the all langauge code which are being written in the codeSnippets,referenceSolution,templateCode
 
+!important please write the code of codeSnippets at last after analysing all code of each language using referenceSolution that how it will get input very easyly, use standard input getting module, like for javascript use fs module, and so on for different language for different module
 
 { 
     "title": "Add Two Numbers", 

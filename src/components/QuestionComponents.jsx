@@ -5,7 +5,7 @@ import DetailsComponents from './DetailsComponents'
 function QuestionComponents() {
 
   return (
-    <div className='QuestionComponents overflow-hidden'>
+    <div className='QuestionComponents flex flex-col overflow-hidden'>
       {/* menu components */}
       <div className='Q_menu'>
           <BookText color='#3b82f680'/>

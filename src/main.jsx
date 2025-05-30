@@ -12,13 +12,17 @@ import Dashboard from './pages/Dashboard.jsx'
 import ProblemPage from './pages/ProblemPage.jsx'
 import App from './App.jsx'
 import './index.css'
+import HomePage from './pages/Home.jsx'
 
 const router = createBrowserRouter([
   {
     path:"/",
     element:<App/>,
     children:[
-      
+      {
+        path:"/",
+        element:<HomePage/>
+      },
       {
         path:"/dashboard/:id",
         element:<Dashboard/>

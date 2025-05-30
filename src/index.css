@@ -11,7 +11,7 @@
 .executionPageStyling {
   display: grid;
   grid-template-columns: 50% 50%;
-  grid-template-rows: 50% 50%;
+  grid-template-rows: 100%;
   height: 94vh;
   justify-content: center;
   padding: 12px;
@@ -112,3 +112,26 @@ select option{
 }
 
 
+/* Initial position (hidden below) */
+/* .toast_transition {
+  transform: translateY(-110%);
+  transition: transform 1000s ease-in-out 500ms linear;
+} */
+
+/* Visible state (slide up into view) */
+/* .toast_transition_show {
+  transform: translateY(100%);
+  } */
+  
+  @theme {
+    --animate-wiggle: wiggle 1s ease-in-out infinite;
+    @keyframes wiggle {
+      0%,
+      100% {
+        transform: rotate(-3deg);
+      }
+      50% {
+      transform: rotate(3deg);
+    }
+  }
+}

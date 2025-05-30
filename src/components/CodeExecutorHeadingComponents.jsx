@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { CircleUser, CloudUpload, Loader, LoaderCircle, Pause, Play } from 'lucide-react'
 import { ExecutionEndpoint, ProblemEndpoint } from '../Api/ClientApi';
 import { createProblemUseContext } from '../Context/CreateProblemContext';
@@ -8,11 +8,14 @@ import { ModefiedTesxtCase } from '../utils/utils';
 import { useEffect } from 'react';
 import ProfileInfo from './ProfileInfo';
 import ProfileSection from './ProfileSection';
+import {createPortal} from "react-dom"
 
 function CodeExecutorHeadingComponents({className}) {
     const {pathname} = useLocation();
     const {id} = useParams();
     console.log("location:- ",pathname);
+    const rootRef = useRef(null);
+    const [toast,setToast] = useState({view:false,content:"",success:false});
     
     const {storeExecution,setStoreExecution,testResponse,setTestResponse} = useExecutionProvider();    
 
@@ -46,7 +49,8 @@ function CodeExecutorHeadingComponents({className}) {
         const response = await ExecutionEndpoint.Post("",onlyData);
         console.log(response.data);
         setTestResponse((prev)=> response.data??[])
-        
+        setToast((prev)=> {return {...prev,view:true,content:response.message}})
+
       }else{
         if (!storeExecution) {
           console.log("No Data present here");
@@ -61,8 +65,8 @@ function CodeExecutorHeadingComponents({className}) {
     
         const response = await ProblemEndpoint.Post("testing-problem",newModifiedVersion);
         console.log(response);
-        setTestResponse(response.data??[])
-
+        setTestResponse(response.data??[]);
+        setToast((prev)=> {return {...prev,view:true,content:response.message}})
       }
         } catch (error) {
           console.log("Error in the running code", error);
@@ -85,6 +89,11 @@ function CodeExecutorHeadingComponents({className}) {
           console.log(data);
           const response = await ProblemEndpoint.Post("create-problem",data);
           console.log("jsonResponse:- ",response);
+          setToast((prev)=>{
+            return {...prev,view:true,content:response.message}
+          });
+
+          
         }
         
       } catch (error) {
@@ -95,9 +104,17 @@ function CodeExecutorHeadingComponents({className}) {
     }
 
     useEffect(()=>{
-      console.log("Url Change");
+      console.log("ya changed in toast:- ",toast);
+      if (toast.view) {
+        setTimeout(() => {
+          setToast((prev)=>{
+            return {...prev,view:false,content:""}
+          })
+        }, 3000);
+        
+      }
       
-    },[pathname])
+    },[toast])
 
   return (
     <div className={`bg-gray-900/100 text-white p-2 flex justify-between px-4 items-center ${className}`}>
@@ -120,6 +137,9 @@ function CodeExecutorHeadingComponents({className}) {
     </div>
 
       <ProfileSection/>
+
+      {/* toast */}
+      {toast.view && <div style={{zIndex:"999"}} className='toastDiv fixed right-1 transform -translate-x-1/2 left-[50%] top-0 animate-wiggle rounded-sm flex justify-center items-center w-[350px] text-xl font-bold bg-white text-black outline-1 outline-gray-400 h-20 p-2 text-center'>{toast.content}</div>}
   </div>
   )
 }

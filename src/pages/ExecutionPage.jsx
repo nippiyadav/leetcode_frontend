@@ -25,7 +25,11 @@ function ExecutionPage() {
       }
     }
 
-    getProblemExecution()
+    getProblemExecution();
+
+    return()=>{
+      setStoreExecution({})
+    }
   },[id])
 
   return (
@@ -35,8 +39,11 @@ function ExecutionPage() {
      {storeExecution?.id && 
      <>
      <QuestionComponents/>
+     <div className='flex flex-col gap-2'>
      <CodeEditor/>
      <ResultComponents/>
+
+     </div>
      </>}
     </div>
     </>

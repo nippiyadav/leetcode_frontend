@@ -21,7 +21,7 @@ export async function GrokApi(data) {
       const chatCompletion = await client.chat.completions.create({
     messages: [
       {role:"system",content:`${systemPrompt}`},
-      { role: 'user', content: `json ${CommonQuestionaryMenu}data.AiGenerate` }
+      { role: 'user', content: `json ${CommonQuestionaryMenu} ${data.AiGenerate}` }
     ],
     model: "meta-llama/llama-4-maverick-17b-128e-instruct",
     

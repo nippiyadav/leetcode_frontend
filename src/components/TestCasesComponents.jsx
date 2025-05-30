@@ -68,7 +68,7 @@ function TestCasesComponents() {
   
 
   return (
-    <div>
+    <div className='p-2 h-[250px]'>
       <div className='commanFlex justify-between'>
         <div className='commanFlex flex-wrap'>
         {storeExecution.testCases?.length > 0 && storeExecution?.testCases?.map((v,i)=>(

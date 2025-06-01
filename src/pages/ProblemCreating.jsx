@@ -2,7 +2,6 @@ import React from 'react'
 import ProblemForm from './ProblemForm'
 import TestEditor from '../components/TestEditor'
 import CodeExecutorHeadingComponents from '../components/CodeExecutorHeadingComponents'
-import CreateProblemContextProvider from '../Context/CreateProblemContext'
 
 function ProblemCreating() {
   return (

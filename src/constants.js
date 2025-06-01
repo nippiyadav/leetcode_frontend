@@ -1,3 +1,5 @@
+import { ProblemEndpoint } from "./Api/ClientApi";
+
 export const CommonQuestionaryMenu = {
     codeSnippets: {},
     constraints: [],
@@ -152,3 +154,25 @@ export function data(dashboard) {
     }
 };
 
+
+
+
+
+
+
+
+
+
+export function allLeetCodeProblem(){
+    const newway = async()=>{
+          try {
+            const response = await ProblemEndpoint.Get("get-all-problem");
+            console.log("response:- ",response);
+            // setLeetCodeProblem(response.data??[])
+            return response.data??[]
+          } catch (error) {
+            console.log("Error:- ",error);
+          }
+        }
+        newway()
+} 

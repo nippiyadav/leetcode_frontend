@@ -10,7 +10,7 @@ function TestCasesComponents() {
   const [viewCases,setViewCases] = useState(0);
   const [testCaseFormOpening,setTestCaseFormOpening] = useState({show:false,clientY:0,right:0});
 
-  const [textCasesData,seTextCasesData] = useState(storeExecution.testCases);
+  const [textCasesData,seTextCasesData] = useState(storeExecution?.testCases??[]);
   const [filterCases,setFilterCases] = useState([]);
   const [inputValueChange,setInputValueChange] = useState();
 
@@ -18,8 +18,8 @@ function TestCasesComponents() {
     console.log("viewCases:- ",viewCases);
     
     let filterValue;
-    filterValue = storeExecution.testCases?.filter((v,i)=> i===viewCases);
-    if (storeExecution.testCases?.length === 0 ) {
+    filterValue = storeExecution?.testCases?.filter((v,i)=> i===viewCases);
+    if (storeExecution?.testCases?.length === 0 ) {
       filterValue = [];
     }
     
@@ -71,7 +71,7 @@ function TestCasesComponents() {
     <div className='p-2 h-[250px]'>
       <div className='commanFlex justify-between'>
         <div className='commanFlex flex-wrap'>
-        {storeExecution.testCases?.length > 0 && storeExecution?.testCases?.map((v,i)=>(
+        {storeExecution?.testCases?.length > 0 && storeExecution?.testCases?.map((v,i)=>(
           <span key={i} onClick={()=> setViewCases(i)} className='px-4 py-2 rounded-md bg-gray-300/100 mr-2 group relative cursor-pointer'>Test {i+1}
           <X onClick={()=>{   
             deleteTestCase(i)

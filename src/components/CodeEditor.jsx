@@ -8,9 +8,9 @@
     const [languageChange,setLanguageChange] = useState('#');
     const [code,setCode] = useState("");
 
-    useEffect(()=>{
-      console.log(Object.keys(storeExecution.referenceSolution));
-      const arrLanguage = Object.keys(storeExecution.referenceSolution)
+    useEffect(()=>{      
+      console.log(Object.keys(storeExecution?.referenceSolution));
+      const arrLanguage = Object.keys(storeExecution?.referenceSolution)
       setAllLanguage(arrLanguage);
       setStoreExecution((prev)=>{
         console.log("running on loading",prev);
@@ -65,7 +65,7 @@
           tabSize: 4, // standard Python indent
           insertSpaces: true,
         }}
-        language={storeExecution.language} 
+        language={storeExecution?.language} 
         // defaultLanguage={languageChange} 
         onChange={(e)=>{setCode(e)}}
         defaultValue="// change language for getting templates" />

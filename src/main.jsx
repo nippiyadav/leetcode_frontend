@@ -6,13 +6,13 @@ import ExecutionPage from './pages/ExecutionPage.jsx'
 import LoginPage from './pages/LoginPage.jsx'
 import ProblemCreating from './pages/ProblemCreating.jsx'
 import AuthProvider from './Context/ContextProvider.jsx'
-import CreateProblemContextProvider from './Context/CreateProblemContext.jsx'
 import ExecutionProvider from './Context/ExecutionProvider.jsx'
 import Dashboard from './pages/Dashboard.jsx'
 import ProblemPage from './pages/ProblemPage.jsx'
 import App from './App.jsx'
 import './index.css'
 import HomePage from './pages/Home.jsx'
+import ProblemContextProvider from './Context/ProblemListContext.jsx'
 
 const router = createBrowserRouter([
   {
@@ -57,12 +57,12 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <AuthProvider>
       <ExecutionProvider>
-        <CreateProblemContextProvider>
+        <ProblemContextProvider>
           <div className='max-w-[1920px] mx-auto'>
           <RouterProvider router={router}>
           </RouterProvider>
           </div>
-        </CreateProblemContextProvider>
+        </ProblemContextProvider>
       </ExecutionProvider>
     </AuthProvider>
   </StrictMode>,

@@ -1,7 +1,6 @@
 import React, { useRef, useState } from 'react'
 import { CircleUser, CloudUpload, Loader, LoaderCircle, Pause, Play } from 'lucide-react'
 import { ExecutionEndpoint, ProblemEndpoint } from '../Api/ClientApi';
-import { createProblemUseContext } from '../Context/CreateProblemContext';
 import {Link, useLocation,useParams} from "react-router-dom"
 import { useExecutionProvider } from '../Context/ExecutionProvider';
 import { ModefiedTesxtCase } from '../utils/utils';
@@ -9,6 +8,7 @@ import { useEffect } from 'react';
 import ProfileInfo from './ProfileInfo';
 import ProfileSection from './ProfileSection';
 import {createPortal} from "react-dom"
+import { useAuthProvider } from '../Context/ContextProvider';
 
 function CodeExecutorHeadingComponents({className}) {
     const {pathname} = useLocation();
@@ -17,7 +17,8 @@ function CodeExecutorHeadingComponents({className}) {
     const rootRef = useRef(null);
     const [toast,setToast] = useState({view:false,content:"",success:false});
     
-    const {storeExecution,setStoreExecution,testResponse,setTestResponse} = useExecutionProvider();    
+    const {storeExecution,setStoreExecution,testResponse,setTestResponse} = useExecutionProvider();   
+    const {user,setUser} = useAuthProvider() 
 
     
     const [play,setPlay] = useState(false);
@@ -25,6 +26,12 @@ function CodeExecutorHeadingComponents({className}) {
 
     const runningCode = async ()=>{
       try {
+        setPlay(true);
+        
+        if (!user) {
+          setToast((prev)=> {return {...prev,view:true,content:"Please login"}});
+          throw new Error("Please login");
+        }
                 
       if (pathname.startsWith(`/execution/${id}`)) {
           console.log("storeExecution:- ",storeExecution);
@@ -65,14 +72,16 @@ function CodeExecutorHeadingComponents({className}) {
     
         const response = await ProblemEndpoint.Post("testing-problem",newModifiedVersion);
         console.log(response);
+        
         setTestResponse(response.data??[]);
         setToast((prev)=> {return {...prev,view:true,content:response.message}})
       }
         } catch (error) {
           console.log("Error in the running code", error);
-          
-        }finally{
           setPlay(false)
+        }finally{
+          setPlay(false);
+
         }
         
     }
@@ -124,7 +133,7 @@ function CodeExecutorHeadingComponents({className}) {
     </div>
     <div className='commanFlex'>
       {/* running */}
-      <button onClick={()=> setPlay(prev=> !prev)} className="CommonBtnStyle commanFlex items-center">{play?<Pause />:<Play onClick={()=> runningCode()}/>}Run</button>
+      <button className="CommonBtnStyle commanFlex items-center">{play?<Pause />:<Play onClick={()=> runningCode()}/>}Run</button>
 
       {/* submit */}
       {pathname.startsWith(`/execution/${id}`)?

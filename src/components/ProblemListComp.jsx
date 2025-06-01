@@ -1,27 +1,33 @@
-import React, { useEffect, useState } from 'react'
-import { ProblemEndpoint } from '../Api/ClientApi';
+import React, { use, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
+import { useContextProblemList } from '../Context/ProblemListContext';
 
-function ProblemListComp({}) {
-      const [leetCodeProblems,setLeetCodeProblem] = useState([]);
 
-    useEffect(()=>{
-    const allLeetCodeProblem = async()=>{
-      try {
-        const response = await ProblemEndpoint.Get("get-all-problem");
-        console.log("response:- ",response);
-        setLeetCodeProblem(response.data??[])
-      } catch (error) {
-        console.log("Error:- ",error);
-      }
-    }
-
-    allLeetCodeProblem()
-  },[]);
-
+function ProblemListComp() {
+  const {problemList,setProblemList,loading,problemPagination} = useContextProblemList()
+  console.log(problemList);
+      useEffect(()=>{
+        problemPagination();
+      },[])
   return (
     <div>
-        {leetCodeProblems?.map((v,i)=>(
+        {loading?
+        <>
+        {
+          [1,2,3,4,5,6,7,8,9,10].map((v,i)=>(
+            <div key={i} className={`commanFlex justify-between mb-2 text-white bg-gray-900 p-2 rounded-md flex-wrap even:bg-gray-800 animate-pulse h-10`}>
+                {<span></span>}
+                <span className='flex-1'></span>
+                <span style={{flexBasis:"100px"}} className={`text-left `}></span>
+            </div>
+              )
+            )
+              }
+        </>
+        :
+        <>
+        {problemList.length>0?
+        problemList?.map((v,i)=>(
               <Link key={i} to={`/execution/${v.id}`}>
                 <div key={i} className={`commanFlex justify-between mb-2 text-white bg-gray-900 p-2 rounded-md flex-wrap even:bg-gray-800 ${v.demo?"bg-green-900/100":""}`}>
                     {v.demo?<span>Demo</span>:<></>}
@@ -32,7 +38,11 @@ function ProblemListComp({}) {
                         ${v.difficulty==="HARD"&&"text-red-500"}`}>{v.difficulty}</span>
                 </div>
               </Link>
-            ))}
+            )
+          ):
+          <h1 className='font-black text-2xl'>No Problem Found!</h1>}
+        </>
+        }
     </div>
   )
 }

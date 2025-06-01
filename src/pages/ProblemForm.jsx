@@ -11,6 +11,7 @@ import AiGenerate from '../components/AiGenerate';
 function ProblemForm() {
     const boxRef = useRef(null);
     const constraintsRef = useRef(null);
+    const textareaRef = useRef(null);
     const [exampleFormView,setExampleFormView] = useState(false);
     const [hintsFormView,setHintsFormView] = useState(false);
     const [constraintsView,setConstraintsView] = useState(false);
@@ -85,6 +86,8 @@ function ProblemForm() {
         setBoxRef(ref);
         setConstantRef(Constantref);
         setHintRef(hintRef);
+
+        textareaHeightControl()
         
     }, []);
 
@@ -94,7 +97,18 @@ function ProblemForm() {
         setValue("description",storeExecution.description)
         setValue("difficulty",storeExecution.difficulty)
         
-    },[storeExecution])
+    },[storeExecution]);
+
+    const textareaHeightControl = (e)=>{
+    const textarea = textareaRef.current;
+    console.log(textarea.style.height,textarea.scrollHeight);
+    
+    if (textarea) {
+      textarea.style.height = "auto"; // reset is neccessary when you want textarea shrink height when content reduce, if not use then it will stick
+      textarea.style.height = textarea.scrollHeight + "px"; // grow to fit
+    }
+    }
+
 
   return (
     <div className='p-2 h-full min-h-[444px] overflow-auto'>
@@ -110,7 +124,7 @@ function ProblemForm() {
                 
             
             
-                <Textarea name={'description'} value={storeExecution.description} onChange={(e)=>{
+                <Textarea onInput={textareaHeightControl} className={"min-h-[50px] max-h-[300px] overflow-y-auto resize-none transition-all"} ref={textareaRef} name={'description'} value={storeExecution.description} onChange={(e)=>{
                     setStoreExecution((prev)=>{
                         return {...prev,description:e.target.value}
                     })

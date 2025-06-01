@@ -1,5 +1,6 @@
 import React, { Suspense, useEffect, useState } from 'react'
 import ProblemListComp from '../components/ProblemListComp';
+import { ProblemEndpoint } from '../Api/ClientApi';
 
 function ProblemPage() {
 
@@ -11,9 +12,8 @@ function ProblemPage() {
           <div>
             <h1 className='text-2xl font-black text-center mb-2 text-white'>Problem List</h1>
           </div>
-              <Suspense fallback={<h1>Loading...</h1>}>
+          {/* problem List*/}
                 <ProblemListComp/>
-              </Suspense>
         </div>
         <div className='basis-[200px] bg-gray-900'></div>
       </div>

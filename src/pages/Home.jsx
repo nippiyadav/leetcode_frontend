@@ -16,7 +16,7 @@ export default function HomePage() {
           up your skills with curated problems and competitions.
         </p>
         <button className="bg-yellow-400 text-black px-6 py-2 font-semibold rounded-xl hover:bg-yellow-300 transition">
-          <Link to={"/all-problem/page=1&limit=10"}>Get Started</Link>
+          <Link to={"/all-problem?page=1&limit=10"}>Get Started</Link>
         </button>
       </section>
 

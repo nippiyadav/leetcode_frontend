@@ -13,6 +13,7 @@ import App from './App.jsx'
 import './index.css'
 import HomePage from './pages/Home.jsx'
 import ProblemContextProvider from './Context/ProblemListContext.jsx'
+import IndivisualProblem from './pages/IndivisualProblem.jsx'
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
       {
         path:"/dashboard/:id",
         element:<Dashboard/>
+      },
+      {
+        path:"/dashboard/:username/:problemId",
+        element:<IndivisualProblem/>
       },
       
       {

@@ -112,7 +112,7 @@ function ProblemForm() {
 
   return (
     <div className='p-2 h-full min-h-[444px] overflow-auto'>
-        <div>AI</div>
+        <h1 className='text-center font-bold'>AI Leetcode Question Generate</h1>
         <AiGenerate/>
         <form onChange={handleSubmit(()=>{})} >
            

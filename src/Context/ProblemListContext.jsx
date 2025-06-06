@@ -6,14 +6,33 @@ const problemListStore = createContext(null);
 
 function ProblemContextProvider({children}) {
     const [problemList,setProblemList] = useState([]);
+    const [companiesList,setCompaniesList] = useState([]);
+    const [tagsList,setTagsList] = useState([]);
     const [loading,setLoading] = useState(false);
+    const [filterProblemList,setFilterProblemList] = useState([]);
+    const [selectedTags,setSelectedTags] = useState(null);
+    const [totalProblems,setTotalProblems] = useState(0);
+
     
     const problemPagination = async(pagination)=>{
         try {
             setLoading(true);
-            const response = await ProblemEndpoint.Get("get-all-problem");
+            const response = await ProblemEndpoint.Get(`get-all-problem?page=${pagination}&limit=10`);
+            
             if (response.success) {
-                setProblemList(response.data??[]);
+                console.log("get-all-problem:- ",[...response.data.data]);
+                
+                setProblemList((prev)=>{
+                    return [...prev,...response.data.data??[]];   
+                });
+
+                setFilterProblemList((prev)=>{
+                    return [...response.data.data[0].problems??[]]
+                });
+                
+                setCompaniesList(response.data.companies??[])
+                setTagsList(response.data.tags??[])
+                setTotalProblems(response.data.totalProblems??0)
             }
 
         } catch (error) {
@@ -24,9 +43,23 @@ function ProblemContextProvider({children}) {
         }
         
     }
+
+    const filterProblemListFn = (tags,index,pageNum)=>{
+      console.log(tags,":- ",index);
+      console.log(problemList);
+      
+    
+      
+      
+      if (selectedTags===index) {
+        setSelectedTags(null)
+      }else{
+        setSelectedTags(index);
+      }
+      }
     
   return (
-    <problemListStore.Provider value={{problemList,setProblemList,loading,problemPagination}}>
+    <problemListStore.Provider value={{problemList,setProblemList,loading,problemPagination,companiesList,tagsList,filterProblemListFn,setFilterProblemList,filterProblemList,selectedTags,setSelectedTags,totalProblems}}>
         {children}
     </problemListStore.Provider>
   )

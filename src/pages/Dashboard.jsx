@@ -27,14 +27,18 @@ function Dashboard() {
   },[])
 
   return (
-    <div className='max-w-[1024px] mx-auto'>
+    <div className='max-w-7xl mx-auto'>
       <div className='p-2'>
-        <div className='flex mb-2 gap-4 flex-wrap'>
-          <div className='flex justify-center items-center flex-col'>
-          <div className='w-20 h-20 bg-gray-400 rounded-full'></div>
-          <div className='text-sm font-black'>{user?.fullname}</div>
+
+        <div className='flex mb-2 gap-4 flex-col'>
+          <div className='h-60 bg-gradient-to-br from-black via-gray-900 to-black rounded-md flex justify-center items-center text-3xl font-black shadow-md text-gray-100'> BANNER</div>
+          <div className='flex flex-wrap items-center gap-2 bg-gradient-to-br from-black via-gray-900 to-black p-2 text-white rounded-md'>
+            <div className='w-15 h-15 bg-gray-400 rounded-full'></div>
+            <div className='flex flex-col'>
+              <span className='text-sm font-black'>{user?.fullname}</span>
+              <span className='text-sm font-black'>{user?.username}</span>
+            </div>
           </div>
-          <div className='flex-1 bg-gray-500 text-center rounded-md leading-[122px] text-3xl font-black'> BANNER</div>
         </div>
 
         <div className='border-2 flex p-2 gap-2 flex-wrap'>
@@ -73,15 +77,34 @@ function Dashboard() {
           </div>
           <div className='p-2'>
             {user?.problemSolvedData?.length>0 && user?.problemSolvedData?.map((v,i)=>(
+              <div key={i} className='bg-gray-900 rounded-md flex flex-col mb-2'>
+              
               <Link key={i} to={v.id}>
-                <div key={v.id} className='commanFlex justify-between mb-2 text-white bg-gray-900 p-2 rounded-md flex-wrap even:bg-gray-800'>
-                        <span className='flex-1'>{i+1}. {v.title}</span>
-                        <span style={{flexBasis:"100px"}} className={`text-left 
-                            ${v.difficulty==="EASY"&&"text-sky-500"} 
-                            ${v.difficulty==="MEDIUM"&&"text-amber-300"}
-                            ${v.difficulty==="HARD"&&"text-red-500"}`}>{v.difficulty}</span>
+                <div key={v.id} className='commanFlex justify-between items-center mb-2 text-white  p-2 rounded-md flex-wrap even:bg-gray-800'>
+
+                  <div className='flex-1 flex flex-col gap-1'>
+                    <span className='mb-2'>{i+1}. {v.title}</span>
+                      <div className='flex gap-2 text-sm font-semibold'>
+                        {v.solvedLanguage.map((v,i)=>(
+                          <div key={i} className='bg-gradient-to-b from-gray-400 to-gray-700 rounded-md p-1 flex gap-2 mb-2 px-2 py-1'>
+                            <span>{v.language}</span>
+                            <span>{v._count}</span>
+                          </div>
+                        ))}
+                      </div>
+                  </div>
+
+                    <span style={{flexBasis:"100px"}} className={`text-left 
+                        ${v.difficulty==="EASY"&&"text-sky-500"} 
+                        ${v.difficulty==="MEDIUM"&&"text-amber-300"}
+                        ${v.difficulty==="HARD"&&"text-red-500"}`}>{v.difficulty}
+                    </span>
                   </div>
               </Link>
+
+            
+
+              </div>
             ))}
           </div>
         </div>

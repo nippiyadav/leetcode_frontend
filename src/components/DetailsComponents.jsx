@@ -9,6 +9,12 @@ function DetailsComponents() {
   return (
     <div className='DetailsComponents overflow-y-auto p-4 commanFlex gap-3 flex-col mb-4'>
         <h1>{storeExecution?.title}</h1>
+        {/* company */}
+        <div className='commanFlex'>
+            {Array.isArray(storeExecution?.company) && storeExecution?.company?.map((v,i)=>(
+                <span className='bg-[#d3efe6e6] px-[14px] py-[4px] rounded-2xl cursor-pointer' key={i}>{v}</span>
+            ))}
+        </div>
         {/* tags */}
         <div className='commanFlex'>
             {Array.isArray(storeExecution?.tags) && storeExecution?.tags?.map((v,i)=>(

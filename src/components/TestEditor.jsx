@@ -15,14 +15,7 @@ function TestEditor() {
     console.log(storeExecution);
     
 
-     const [code,setCode] = useState(`/**
-     * @param {number[]} nums
-     * @param {number} target
-     * @return {number[]}
-     */
-    var twoSum = function(nums, target) {
-        
-    };`)
+     const [code,setCode] = useState(`// please fill all the fields\nor use the ai for generate leetcode problems`)
 
     // this useEffect will help in getting value push in the global context
     useEffect(()=>{

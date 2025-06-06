@@ -135,3 +135,31 @@ select option{
     }
   }
 }
+
+
+@layer base {
+  .DivindivisualSpan{
+    @apply flex gap-1.5
+  }
+  .indivisualSpan{
+    @apply p-1.5 rounded-md bg-black/80
+  }
+}
+
+/* this css give scrolling but do not show the scrollbar */
+.scrollbar_width{
+      scrollbar-width: none;
+}
+
+.scrollbar_color::-webkit-scrollbar-thumb {
+  background-color: rgba(128, 128, 128, 0.5); /* Semi-transparent gray */
+  border-radius: 6px; /* Optional: Adds rounded corners to the thumb */
+}
+
+.scrollbar_color::-webkit-scrollbar-track {
+  background-color: rgba(0, 0, 0, 0.1); /* Slightly transparent track */
+}
+
+.scrollbar_color::-webkit-scrollbar {
+  width: 10px; /* Optional: Set the width of the scrollbar */
+}

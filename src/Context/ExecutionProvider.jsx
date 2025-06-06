@@ -4,76 +4,64 @@ const StoreExecution = createContext(null)
 
 
 function ExecutionProvider({children}) {
-    const [storeExecution,setStoreExecution] = useState({
-      title:"",
-      description:"",
-      defficulty:"",
-      tags:[],
-      example:[],
-      constraints:[ ],
-      company: [],
-      demo: false,
-      hints:[ ],
-      language:"",
-      templateCode:{},
-      testCases:[],
-      codeSnippets:{},
-      referenceSolution: { }
-    });
+    // const [storeExecution,setStoreExecution] = useState({
+    //   title:"",
+    //   description:"",
+    //   defficulty:"",
+    //   tags:[],
+    //   example:[],
+    //   constraints:[ ],
+    //   company: [],
+    //   demo: false,
+    //   hints:[ ],
+    //   language:"",
+    //   templateCode:{},
+    //   testCases:[],
+    //   codeSnippets:{},
+    //   referenceSolution: { }
+    // });
     
-//     const [storeExecution,setStoreExecution] = useState(
-// {
-//   "title": "Longest Subarray with Sum K",
-//   "description": "You are given an array of integers and an integer K. Find the length of the longest subarray whose sum equals K.\\n\\n💡 A *subarray* is a contiguous part of an array.\\nFor example, in the array [1, 2, 3], the subarray [2, 3] has sum 5.\\nThis problem requires optimal time complexity. Use prefix sums with a hashmap.",
-//   "difficulty": "HARD",
-//   "company": ["amazon", "adobe", "flipkart"],
-//   "demo": false,
-//   "tags": ["array", "hashmap", "prefix-sum", "sliding-window"],
-//   "example": [
-//     {
-//       "input": "8\\n1 2 3 -2 5 1 -1 3\\n5",
-//       "output": "4",
-//       "explanation": "The subarray [3, -2, 5, -1] has sum 5 and length 4."
-//     },
-//     {
-//       "input": "5\\n1 1 1 1 1\\n2",
-//       "output": "2",
-//       "explanation": "Multiple subarrays like [1, 1] exist with sum 2, length 2."
-//     }
-//   ],
-//   "templateCode": {
-//     "javascript": "function longestSubarraySumK(arr, k) {\n  // Write your code here\n}",
-//     "python": "def longest_subarray_sum_k(arr, k):\n    # Write your code here",
-//     "java": "public static int longestSubarraySumK(int[] arr, int k) {\n    // Write your code here\n}"
-//   },
-//   "constraints": ["1 <= arr.length <= 10^5", "-10^4 <= arr[i] <= 10^4", "-10^9 <= k <= 10^9"],
-//   "hints": [
-//     "Use a hashmap to store prefix sums and their earliest indices.",
-//     "If current_sum - k exists in map, we found a valid subarray."
-//   ],
-//   "codeSnippets": {
-//     "javascript": "const fs = require('fs');\nconst input = fs.readFileSync(0, 'utf-8').trim().split('\\n');\nconst n = parseInt(input[0]);\nconst arr = input[1].split(' ').map(Number);\nconst k = parseInt(input[2]);\nconsole.log(longestSubarraySumK(arr, k));",
-//     "python": "import sys\ndata = sys.stdin.read().strip().split()\nn = int(data[0])\narr = list(map(int, data[1:1+n]))\nk = int(data[1+n])\nprint(longest_subarray_sum_k(arr, k))",
-//     "java": "import java.util.*;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = sc.nextInt();\n        int[] arr = new int[n];\n        for (int i = 0; i < n; i++) arr[i] = sc.nextInt();\n        int k = sc.nextInt();\n        System.out.println({{solution}});\n    }\n    {{solution}}\n}"
-//   },
-//   "testCases": [
-//     { "input": "5\\n1 2 3 -2 2\\n3", "output": "3" },
-//     { "input": "6\\n-1 2 3 1 -2 4\\n4", "output": "4" }
-//   ],
-//   "referenceSolution": {
-//     "javascript": "function longestSubarraySumK(arr, k) {\n  const map = new Map();\n  let sum = 0, maxLen = 0;\n  for (let i = 0; i < arr.length; i++) {\n    sum += arr[i];\n    if (sum === k) maxLen = i + 1;\n    if (map.has(sum - k)) maxLen = Math.max(maxLen, i - map.get(sum - k));\n    if (!map.has(sum)) map.set(sum, i);\n  }\n  return maxLen;\n}",
-//     "python": "def longest_subarray_sum_k(arr, k):\n    prefix_map = {}\n    current_sum = 0\n    max_len = 0\n    for i, num in enumerate(arr):\n        current_sum += num\n        if current_sum == k:\n            max_len = i + 1\n        if current_sum - k in prefix_map:\n            max_len = max(max_len, i - prefix_map[current_sum - k])\n        if current_sum not in prefix_map:\n            prefix_map[current_sum] = i\n    return max_len",
-//     "java": "public static int longestSubarraySumK(int[] arr, int k) {\n    Map<Integer, Integer> map = new HashMap<>();\n    int sum = 0, maxLen = 0;\n    for (int i = 0; i < arr.length; i++) {\n        sum += arr[i];\n        if (sum == k) maxLen = i + 1;\n        if (map.containsKey(sum - k)) maxLen = Math.max(maxLen, i - map.get(sum - k));\n        if (!map.containsKey(sum)) map.put(sum, i);\n    }\n    return maxLen;\n}"
-//   }
-// }
+    const [storeExecution,setStoreExecution] = useState(
+      {
+  "title": "Longest Substring Without Repeating Characters",
+  "description": "Given a string `s`, find the length of the longest substring without repeating characters.\n\n- A **substring** is a contiguous sequence of characters within a string.\n- You must return an integer representing the length of the longest such substring.\n\nFor example, in the string `abcabcbb`, the longest substring without repeating characters is `abc`, which has a length of 3.",
+  "difficulty": "Medium",
+  "tags": ["Hash Table", "String", "Sliding Window"],
+  "example": {
+    "input": "abcabcbb",
+    "output": "3"
+  },
+  "constraints": [
+    "0 <= s.length <= 50000",
+    "s consists of English letters, digits, symbols and spaces."
+  ],
+  "testCases": [
+    { "input": "abcabcbb", "output": "3" },
+    { "input": "bbbbb", "output": "1" },
+    { "input": "pwwkew", "output": "3" },
+    { "input": "", "output": "0" },
+    { "input": "abcdef", "output": "6" }
+  ],
+  "referenceSolution": {
+    "python": "def lengthOfLongestSubstring(s):\n    char_set = set()\n    left = 0\n    max_len = 0\n    for right in range(len(s)):\n        while s[right] in char_set:\n            char_set.remove(s[left])\n            left += 1\n        char_set.add(s[right])\n        max_len = max(max_len, right - left + 1)\n    return max_len",
+    "java": "public static int lengthOfLongestSubstring(String s) {\n    Set<Character> set = new HashSet<>();\n    int left = 0, max = 0;\n    for (int right = 0; right < s.length(); right++) {\n        while (set.contains(s.charAt(right))) {\n            set.remove(s.charAt(left));\n            left++;\n        }\n        set.add(s.charAt(right));\n        max = Math.max(max, right - left + 1);\n    }\n    return max;\n}",
+    "javascript": "function lengthOfLongestSubstring(s) {\n    const set = new Set();\n    let left = 0, max = 0;\n    for (let right = 0; right < s.length; right++) {\n        while (set.has(s[right])) {\n            set.delete(s[left]);\n            left++;\n        }\n        set.add(s[right]);\n        max = Math.max(max, right - left + 1);\n    }\n    return max;\n}"
+  },
+  "codeSnippets": {
+    "python": "import sys\ns = sys.stdin.read().strip()\nprint(lengthOfLongestSubstring(s))",
+    "java": "import java.util.*;\nimport java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String s = sc.nextLine();\n        System.out.println(lengthOfLongestSubstring(s));\n    }\n\n    {{solution}}\n}",
+    "javascript": "const fs = require('fs');\nconst s = fs.readFileSync(0, 'utf-8').trim();\nconsole.log(lengthOfLongestSubstring(s));\n\n{{solution}}"
+  },
+  "templateCode": {
+    "python": "def lengthOfLongestSubstring(s):\n    # Write your code here\n    pass",
+    "java": "public static int lengthOfLongestSubstring(String s) {\n    // Write your code here\n}",
+    "javascript": "function lengthOfLongestSubstring(s) {\n    // Write your code here\n}"
+  }
+}
 
 
+    );
 
-
-
-
-
-// )
     const [testResponse,setTestResponse]  = useState([]);
 
   return (

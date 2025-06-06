@@ -1,5 +1,5 @@
 import { Menu } from '../constants'
-import {NavLink } from 'react-router-dom'
+import {Link, NavLink } from 'react-router-dom'
 import ProfileSection from './ProfileSection'
 
 function HeaderComponents() {
@@ -10,7 +10,7 @@ function HeaderComponents() {
     <div className='bg-gray-700 text-white p-2 flex justify-between px-4 items-center'>
     <div>
       {/* <img src="" alt="" /> */}
-      <h2 className="text-2xl font-bold text-yellow-400">LeetPro</h2>
+      <Link to="/"><h2 className="text-2xl font-bold text-yellow-400">LeetPro</h2></Link>
     </div>
     <div className='commanFlex flex-1 flex justify-center ml-4'>
       <ul className='commanFlex'>

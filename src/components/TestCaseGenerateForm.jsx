@@ -54,13 +54,14 @@ function TestCaseGenerateForm({exampleFn:parrentFn,showHide=false,top,inputField
   return (
     <>{showHide && 
     <div className={`max-w-[444px] p-2 bg-gray-500 rounded-md absolute right-10 transform -translate-y-1/2`} style={{top:`${top}px`,right:`${right+50}px`, zIndex:"999"}}>
-        <form onSubmit={handleSubmit(customeSubmission)}>
+        <form onSubmit={handleSubmit(customeSubmission)} className='h-[350px]
+    overflow-y-auto scrollbar_color'>
             <div className='commanFlex justify-between'>
                 <span>Adding Field</span>
                 <span>
                     <CirclePlus onClick={()=> {
                         setField((prev) => [...prev,prev.length+1]);
-                        setFieldValue((prev)=> [...prev,"newRags"])
+                        setFieldValue((prev)=> [...prev,""])
                     }
                     }/>
                 </span>
@@ -80,7 +81,7 @@ function TestCaseGenerateForm({exampleFn:parrentFn,showHide=false,top,inputField
             ))}
             {/* <Input {...register("output",{required:"this is required"})}/>
             <Input {...register("explanation",{required:"this is required"})}/> */}
-            <button className='block mx-auto px-4 py-2 bg-green-400 rounded-md' type='submit'>Submit</button>
+           {field.length>0 && <button className='block mx-auto px-4 py-2 mt-1 bg-green-400 rounded-md' type='submit'>Submit</button> }
         </form>
     </div>}</>
   )

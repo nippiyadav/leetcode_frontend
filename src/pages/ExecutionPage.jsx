@@ -10,8 +10,7 @@ import { useExecutionProvider } from '../Context/ExecutionProvider'
 function ExecutionPage() {
   const {id} = useParams();
   console.log("id:- ",id);
-  const {storeExecution,setStoreExecution} = useExecutionProvider();
-  
+  const {storeExecution,setStoreExecution,testResponse,setTestResponse} = useExecutionProvider();  
   
   useEffect(()=>{
     const getProblemExecution = async ()=>{
@@ -28,7 +27,8 @@ function ExecutionPage() {
     getProblemExecution();
 
     return()=>{
-      setStoreExecution({})
+      setStoreExecution({});
+      setTestResponse([])
     }
   },[id])
 

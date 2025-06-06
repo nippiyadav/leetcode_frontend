@@ -5,7 +5,8 @@ const AuthContext = createContext(null)
 
 
 function AuthProvider({children}) {
-    const [user,setUser] = useState(null)
+    const [user,setUser] = useState(null);
+    const [solvedIndivisualProblems,setSolvedIndivisualProblems] = useState({});
 
     const logout = async ()=>{
         try {
@@ -38,7 +39,7 @@ function AuthProvider({children}) {
     },[])
     
   return (
-    <AuthContext.Provider value={{user,setUser,logout}}>
+    <AuthContext.Provider value={{user,setUser,logout,solvedIndivisualProblems,setSolvedIndivisualProblems}}>
         {children}
     </AuthContext.Provider>
   )

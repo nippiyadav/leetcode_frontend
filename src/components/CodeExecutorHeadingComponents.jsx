@@ -98,9 +98,16 @@ function CodeExecutorHeadingComponents({className}) {
           console.log(data);
           const response = await ProblemEndpoint.Post("create-problem",data);
           console.log("jsonResponse:- ",response);
-          setToast((prev)=>{
-            return {...prev,view:true,content:response.message}
-          });
+          if (response.success) {
+            setToast((prev)=>{
+              return {...prev,view:true,content:response.message}
+            });
+          }else{
+            setToast((prev)=>{
+              return {...prev,view:true,content:response.errors[0].error}
+            });
+
+          }
 
           
         }

@@ -8,8 +8,8 @@ export default function HomePage() {
 
       {/* Hero Section */}
       <section className="flex flex-col items-center justify-center text-center py-24 px-4">
-        <h2 className="text-4xl md:text-5xl font-extrabold mb-4">
-          Master Coding Interviews
+        <h2 className="text-4xl md:text-5xl font-extrabold mb-4 leading-14">
+          Master Coding AtoZ <br/> From LeetPro
         </h2>
         <p className="text-gray-300 max-w-2xl text-lg mb-6">
           Solve coding challenges, prepare for technical interviews, and level
@@ -22,7 +22,7 @@ export default function HomePage() {
 
       {/* Stats Section */}
       <section className="grid md:grid-cols-3 gap-6 px-6 md:px-20 pb-20">
-        <div className="bg-gray-800 rounded-2xl p-6 flex items-center space-x-4 shadow-md">
+        <div className="bg-gray-800 rounded-2xl p-6 flex items-center space-x-4 shadow-md hover:outline-2 outline-amber-50/10">
           <Code className="text-yellow-400 w-8 h-8" />
           <div>
             <p className="text-xl font-semibold">2500+</p>

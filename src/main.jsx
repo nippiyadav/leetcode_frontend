@@ -1,11 +1,11 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import {createBrowserRouter,RouterProvider} from "react-router-dom"
+import {createBrowserRouter,RouterProvider, useNavigate} from "react-router-dom"
 import ExecutionPage from './pages/ExecutionPage.jsx'
 import LoginPage from './pages/LoginPage.jsx'
 import ProblemCreating from './pages/ProblemCreating.jsx'
-import AuthProvider from './Context/ContextProvider.jsx'
+import AuthProvider, { useAuthProvider } from './Context/ContextProvider.jsx'
 import ExecutionProvider from './Context/ExecutionProvider.jsx'
 import Dashboard from './pages/Dashboard.jsx'
 import ProblemPage from './pages/ProblemPage.jsx'

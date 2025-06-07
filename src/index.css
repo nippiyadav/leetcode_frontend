@@ -163,3 +163,31 @@ select option{
 .scrollbar_color::-webkit-scrollbar {
   width: 10px; /* Optional: Set the width of the scrollbar */
 }
+
+
+.summaryClassnameDiv div{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.summaryClassnameDiv div>span:nth-child(2){
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.summaryClassnameDiv div>span:nth-child(1){
+  font-weight: 600;
+}
+
+
+
+
+
+
+
+
+

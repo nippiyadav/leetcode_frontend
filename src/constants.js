@@ -197,13 +197,6 @@ export function data(dashboard) {
 
 
 
-
-
-
-
-
-
-
 export function allLeetCodeProblem(){
     const newway = async()=>{
           try {
@@ -217,3 +210,32 @@ export function allLeetCodeProblem(){
         }
         newway()
 } 
+
+
+const indivisualProblemSummary = {
+  title:"Sum Of Two Numbers",
+  CategoryWiseTotalSubmission:6,
+  wrong_righ:{
+    wrong:2,
+    right:4
+  },
+  CategoryWiseExecutionSummary:{
+    Javascript:{
+      source_code:"",
+      source_explaination:"",
+    },
+    Java:{
+      source_code:"",
+      source_explaination:"",
+      
+    },
+    Python:{
+      source_code:"",
+      source_explaination:"",
+
+    }
+  }
+
+}
+
+"chandan\nyadav".split("\n")

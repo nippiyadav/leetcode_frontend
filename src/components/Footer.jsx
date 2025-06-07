@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import { Menu } from "../constants";
 
 export default function Footer() {
   return (
@@ -15,22 +16,13 @@ export default function Footer() {
         {/* Navigation Links */}
         <div>
           <h3 className="text-xl font-semibold mb-2">Links</h3>
-          <ul className="space-y-2 text-gray-300">
-            <li>
-              <Link to="/" className="hover:text-yellow-400 transition">
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link to="/all-problem" className="hover:text-yellow-400 transition">
-                All Problems
-              </Link>
-            </li>
-            <li>
-              <Link to="/problem-create" className="hover:text-yellow-400 transition">
-                Create Problem
-              </Link>
-            </li>
+          <ul className="space-y-2 text-gray-300 flex flex-col">
+            {Menu.map((v,i)=>(
+                    <NavLink key={i} to={v.href} className={
+                      ({isActive,isPending})=>{return isActive?"text-yellow-400 font-semibold":"text-gray-400 font-semibold"}}>
+                    {v.name}
+                    </NavLink>
+                  ))}
           </ul>
         </div>
 

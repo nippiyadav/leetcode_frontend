@@ -2,9 +2,9 @@ import React, { useEffect, useRef, useState } from 'react'
 import { CirclePlus, X } from 'lucide-react';
 import TestCaseGenerateForm from './TestCaseGenerateForm';
 import { useExecutionProvider } from '../Context/ExecutionProvider';
+import {useParams} from "react-router-dom"
 
 function TestCasesComponents() {
-  
   const {storeExecution,setStoreExecution} = useExecutionProvider();
   const creatingProblemRef = useRef(null);
   const [viewCases,setViewCases] = useState(0);
@@ -12,7 +12,9 @@ function TestCasesComponents() {
 
   const [textCasesData,seTextCasesData] = useState(storeExecution?.testCases??[]);
   const [filterCases,setFilterCases] = useState([]);
-  const [inputValueChange,setInputValueChange] = useState();
+  const params = useParams();
+  console.log(params);
+  
 
   useEffect(()=>{
     console.log("viewCases:- ",viewCases);
@@ -40,7 +42,7 @@ function TestCasesComponents() {
 
   const textCaseFn = (data)=>{   
         console.log("Data:- ", data);
-        seTextCasesData((prev)=> [...prev,data]);
+      seTextCasesData((prev)=> [...prev,data]);
 
       setStoreExecution((prev)=> {
       return {...prev,testCases:[...prev?.testCases,data]} })
@@ -67,12 +69,51 @@ function TestCasesComponents() {
   }
   
 
+  const testCaseInputValueChange = (data,keys)=>{
+    // i have got which testcase you are chaning and at that which object value you are changing
+    console.log(viewCases);
+    
+    console.log(data,keys);
+    setFilterCases((prev)=>{
+      console.log([{...prev[0],[keys]:data}])
+      return [{...prev[0],[keys]:data}]
+    })
+    setStoreExecution((prev)=>{
+      console.log(prev);
+
+      const modifiedValue = prev.testCases.map((testCasedata,index)=>{
+        if (index === viewCases) {
+          return {...testCasedata,[keys]:data}
+
+        }else{
+          return testCasedata
+        }
+      });
+
+      console.log("modifiedValue:- ",modifiedValue);      
+      return {...prev,testCases:modifiedValue}
+    })
+  }
+
+  const testcaseAdding = ()=>{
+    let newAddedTestcase;
+    setStoreExecution((prev)=> {
+      newAddedTestcase = prev.testCases[prev.testCases.length-1]
+      return {...prev,testCases:
+        [...prev?.testCases,
+          newAddedTestcase
+        ]} 
+      })
+    
+     seTextCasesData((prev)=> [...prev,newAddedTestcase]);
+  }
+
   return (
     <div className='p-2 h-[250px] overflow-x-auto'>
       <div className='commanFlex justify-between'>
         <div className='commanFlex flex-wrap'>
         {storeExecution?.testCases?.length > 0 && storeExecution?.testCases?.map((v,i)=>(
-          <span key={i} onClick={()=> setViewCases(i)} className='px-4 py-2 rounded-md bg-gray-300/100 mr-2 group relative cursor-pointer'>Test {i+1}
+          <span key={i} onClick={()=> setViewCases(i)} className={`px-4 py-2 rounded-md ${i===viewCases?"bg-gray-500":"bg-gray-300/100"} mr-2 group relative cursor-pointer`}>Test {i+1}
           <X onClick={()=>{   
             deleteTestCase(i)
             }} size={20} className='absolute -top-1 -right-1 bg-[#b0b3b35e] hidden rounded-full p-1 group-hover:block'/>
@@ -82,7 +123,11 @@ function TestCasesComponents() {
         <span>
           <CirclePlus ref={creatingProblemRef} size={24} onClick={(e)=>
                     {   
-                        openingTestCaseBox()
+                      if (params.id) {
+                        testcaseAdding()
+                      }else{
+                        openingTestCaseBox();
+                      }
                     }}
                  />
         </span>
@@ -93,7 +138,7 @@ function TestCasesComponents() {
             {Object.entries(v).map(([ele,v],i)=>(
               <span key={i}>
                 <label htmlFor={ele}>{ele}: </label>
-                <input type="text" value={v} onChange={(e)=>setInputValueChange(e.target.value)}/>
+                <input type="text" value={v} onChange={(e)=>testCaseInputValueChange(e.target.value,ele)}/>
               </span>
             ))}
           </div>

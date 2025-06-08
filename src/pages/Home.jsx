@@ -9,7 +9,7 @@ export default function HomePage() {
       {/* Hero Section */}
       <section className="flex flex-col items-center justify-center text-center py-24 px-4">
         <h2 className="text-4xl md:text-5xl font-extrabold mb-4 leading-14">
-          Master Coding AtoZ <br/> From LeetPro
+          Master Coding AtoZ <br/> From LeetPro.xyz
         </h2>
         <p className="text-gray-300 max-w-2xl text-lg mb-6">
           Solve coding challenges, prepare for technical interviews, and level

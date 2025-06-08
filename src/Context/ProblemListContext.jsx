@@ -44,17 +44,20 @@ function ProblemContextProvider({children}) {
         
     }
 
-    const filterProblemListFn = (tags,index,pageNum)=>{
+    const filterProblemListFn = async (tags,index,pageNum,fuctionCalling)=>{
       console.log(tags,":- ",index);
-      console.log(problemList);
       
+     const response = await ProblemEndpoint.Get(`get-solved-search?search=${tags}`);
+     console.log(response);
     
+     setFilterProblemList(response.data)
       
-      
-      if (selectedTags===index) {
+      if (selectedTags===index) {   
         setSelectedTags(null)
       }else{
-        setSelectedTags(index);
+        if (fuctionCalling==="tags") {
+            setSelectedTags(index);
+        }
       }
       }
     

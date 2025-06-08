@@ -25,7 +25,7 @@ function ProblemListComp() {
         <div className='scrollbar_color overflow-y-auto h-[600px]'>
         {filterProblemList?.length>0?
         filterProblemList?.map((v,i)=>(
-              <Link key={i} to={`/execution/${v._id}`}>
+              <Link key={i} to={`/execution/${v._id??v.id}`}>
                 <div key={i} className={`commanFlex justify-between mb-2 text-white bg-gray-800 hover:bg-gray-900 p-2 rounded-md flex-wrap even:bg-gray-700 even:hover:bg-gray-800 ${v.demo?"bg-green-950 hover:bg-green-900":""}`}>
                     {v.demo?<span>Demo</span>:<></>}
                     <span className='flex-1'>{i+1}. {v.title}</span>

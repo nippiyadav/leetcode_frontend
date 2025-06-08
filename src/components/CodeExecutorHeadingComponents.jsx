@@ -136,7 +136,7 @@ function CodeExecutorHeadingComponents({className}) {
     <div className={`bg-gray-900/100 text-white p-2 flex justify-between px-4 items-center ${className}`}>
     <div>
       {/* <img src="" alt="" /> */}
-      <Link to={"/all-problem"}><span>Problem List</span></Link>
+      <Link to={`/all-problem?page=${1}&limit=10`}><span>Problem List</span></Link>
     </div>
     <div className='commanFlex'>
       {/* running */}

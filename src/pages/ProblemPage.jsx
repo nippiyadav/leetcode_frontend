@@ -82,7 +82,7 @@ function ProblemPage() {
             <h2 className='mb-2 text-center text-xl font-semibold'>Tags</h2>
             <div className='flex items-center gap-2 overflow-x-auto scrollbar_width'>
             {Object.entries(tagsList).map(([tags,number],i)=>(
-              <span className={`indivisualSpan ${i==selectedTags?"bg-gray-800":"bg-gray-500"} hover:bg-gray-700 cursor-pointer whitespace-nowrap`} onClick={()=> filterProblemListFn(tags,i,pageNum)} key={i}>
+              <span className={`indivisualSpan ${i==selectedTags?"bg-gray-800":"bg-gray-500"} hover:bg-gray-700 cursor-pointer whitespace-nowrap`} onClick={()=> filterProblemListFn(tags,i,pageNum,"tags")} key={i}>
                 <span>{tags} </span>
                 <span>{number}</span>
               </span>
@@ -132,7 +132,7 @@ function ProblemPage() {
             <h2 className='mb-2 text-center  text-xl font-semibold'>Trending Company</h2>
           <div className='DivindivisualSpan flex-wrap'>
             {Object.entries(companiesList).map(([company,number],i)=>(
-              <span className='indivisualSpan hover:bg-gray-800 cursor-pointer' key={i}>
+              <span className='indivisualSpan hover:bg-gray-800 cursor-pointer' onClick={()=> filterProblemListFn(company,i,pageNum,"company")} key={i}>
                 <span>{company} </span>
                 <span>{number}</span>
               </span>

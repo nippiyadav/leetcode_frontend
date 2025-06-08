@@ -31,6 +31,11 @@ function CodeExecutorHeadingComponents({className}) {
         if (!user) {
           setToast((prev)=> {return {...prev,view:true,content:"Please login"}});
           throw new Error("Please login");
+        };
+
+        if (!storeExecution.language) {
+          setToast((prev)=> {return {...prev,view:true,content:"Select the Language"}});
+          throw new Error("Select the Language");
         }
                 
       if (pathname.startsWith(`/execution/${id}`)) {
@@ -77,7 +82,7 @@ function CodeExecutorHeadingComponents({className}) {
         setToast((prev)=> {return {...prev,view:true,content:response.message}})
       }
         } catch (error) {
-          console.log("Error in the running code", error);
+          console.log("Error in the running code:-", error.message);
           setPlay(false)
         }finally{
           setPlay(false);

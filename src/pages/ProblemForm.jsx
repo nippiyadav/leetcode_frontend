@@ -35,6 +35,29 @@ function ProblemForm() {
         }
         
     }
+
+    // tags adding with comma keyswords
+    const keyPressCommainCompany= (e)=>{
+        // console.log(e.key);
+
+        if (e.key===",") {
+            e.preventDefault(); // This stops the default comma from being typed
+            setStoreExecution((prev)=> {
+                return {...prev,company:[...prev.company,e.target.value]}
+            })
+            e.target.value = ""
+            resetField("company",{defaultValue:""})
+        }
+        
+    }
+
+    // company delete
+    const deleteCompany = (deleteTagsIndex)=>{
+        setStoreExecution((prev)=> {
+            return {...prev,company:[...prev.company.filter((v,i)=> i !== deleteTagsIndex)]}
+        })
+    }
+
     
     // tags delete
     const deleteTags = (deleteTagsIndex)=>{
@@ -162,6 +185,24 @@ function ProblemForm() {
                 </div>
                
 
+            {/* company */}
+            <label htmlFor="tags" className='font-semibold block flex-1 mt-4'>Company</label>
+            <div className='commanFlex flex-wrap mt-2'>
+                {storeExecution?.company?.length > 0 && storeExecution?.company.map((v,i)=>(
+                    <span className="px-5 py-2 rounded-md bg-gray-300 relative group" key={i}>{v}
+                    <X onClick={()=>deleteCompany(i)} size={20} className='absolute -top-1 -right-1 bg-[#b0b3b35e] cursor-pointer hidden rounded-full p-1 group-hover:block'/>
+                    </span>
+                ))}
+            </div>
+            <Controller
+                name='company'
+                control={control}
+                render={({field,fieldState})=>(
+                    <Textarea className="resize-none" {...field} keyPressCommainTextarea={keyPressCommainCompany} labeShow={false} placeholder='Enter company...'></Textarea>
+                )}
+            />
+
+
             {/* tags */}
             <label htmlFor="tags" className='font-semibold block flex-1 mt-4'>TAGS</label>
             <div className='commanFlex flex-wrap mt-2'>
@@ -178,6 +219,7 @@ function ProblemForm() {
                     <Textarea className="resize-none" {...field} keyPressCommainTextarea={keyPressCommainTextarea} labeShow={false} placeholder='Enter Your Tags...'></Textarea>
                 )}
             />
+
 
             {/* example */}
              <div>

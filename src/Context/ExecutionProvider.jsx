@@ -26,19 +26,20 @@ function ExecutionProvider({children}) {
 //   "title": "Longest Substring Without Repeating Characters",
 //   "description": "Given a string `s`, find the length of the longest substring without repeating characters.\n\n- A **substring** is a contiguous sequence of characters within a string.\n- You must return an integer representing the length of the longest such substring.\n\nFor example, in the string `abcabcbb`, the longest substring without repeating characters is `abc`, which has a length of 3.",
 //   "difficulty": "Medium",
+//   "company": ["amazon", "netflix", "youtube"],
 //   "tags": ["Hash Table", "String", "Sliding Window"],
-//   "example": {
+//   "example": [
+//     {
 //     "input": "abcabcbb",
 //     "output": "3"
-//   },
+//     }
+//   ]
+//   ,
 //   "constraints": [
 //     "0 <= s.length <= 50000",
 //     "s consists of English letters, digits, symbols and spaces."
 //   ],
 //   "hints":[
-
-//   ],
-//   "example":[
 
 //   ],
 //   "testCases": [
